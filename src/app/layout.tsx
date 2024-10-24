@@ -4,6 +4,7 @@ import { ThemeProvider } from 'next-themes'
 import Navbar from "./components/navbar";
 import React from "react";
 import ThemeChanger from "@/app/components/ThemeChanger";
+import Footer from "@/app/components/footer";
 
 export const metadata: Metadata = {
   title: "Blog - Next.js",
@@ -24,6 +25,7 @@ export default function RootLayout({
           {children}
           <ThemeChanger/>
       </div>
+          <Footer />
       </ThemeProvider>
       </body>
     </html>
