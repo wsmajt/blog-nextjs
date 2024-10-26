@@ -22,8 +22,8 @@ A simple blog template built with **Next.js**. This project integrates **DaisyUI
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/yourusername/nextjs-blog-template.git
-   cd nextjs-blog-template
+   git clone https://github.com/wsmajt/blog-nextjs.git
+   cd blog-nextjs
    ```
 
 2. **Install Dependencies**:
