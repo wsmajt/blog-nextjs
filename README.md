@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+---
+
+# Next.js Blog Template
+
+A simple blog template built with **Next.js**. This project integrates **DaisyUI** for styling, **Prisma** and **MongoDB** for database management, and **Lucia Auth** for secure authentication. Note that this template is a work in progress.
+
+## Features
+
+- **DaisyUI**: Tailwind CSS-powered component library for easy, customizable styling.
+- **Prisma + MongoDB**: Prisma ORM with MongoDB backend for flexible data modeling and powerful database management.
+- **Lucia Auth**: Authentication setup for secure, hassle-free user login and registration.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **MongoDB** instance or MongoDB Atlas
+- **Prisma CLI** for database migrations and schema management
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the Repository**:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   git clone https://github.com/yourusername/nextjs-blog-template.git
+   cd nextjs-blog-template
+   ```
 
-## Learn More
+2. **Install Dependencies**:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Set up Environment Variables**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   Create a `.env` file in the root directory and add your database connection and authentication keys:
 
-## Deploy on Vercel
+   ```plaintext
+   DATABASE_URL="mongodb://localhost:27017/yourdbname"
+   NEXTAUTH_SECRET="your_random_secret"
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Initialize Prisma**:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   Generate the Prisma client and apply any migrations:
+
+   ```bash
+   prisma generate
+   prisma db push
+   ```
+
+5. **Run the Development Server**:
+
+   ```bash
+   npm run dev
+   ```
+   
+## Customization
+
+- **Styling**: Modify theme and components in `tailwind.config.js` and `daisyui.config.js`.
+- **Database Models**: Adjust models in `prisma/schema.prisma` to fit your blog’s data structure.
+- **Authentication**: Customize authentication flows in `/lib/server/auth`.
