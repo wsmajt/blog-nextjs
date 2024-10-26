@@ -37,8 +37,7 @@ A simple blog template built with **Next.js**. This project integrates **DaisyUI
    Create a `.env` file in the root directory and add your database connection and authentication keys:
 
    ```plaintext
-   DATABASE_URL="mongodb://localhost:27017/yourdbname"
-   NEXTAUTH_SECRET="your_random_secret"
+   DATABASE_URL="mongodb://user:pwd@localhost:27017/dbname?retryWrites=true&w=majority"
    ```
 
 4. **Initialize Prisma**:
