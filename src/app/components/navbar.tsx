@@ -1,11 +1,13 @@
 ﻿import React from 'react'
 import Logo from '../assets/smajtLogo.svg';
 import Image from "next/image";
+import Link from "next/link";
+import {UserRound} from "lucide-react";
 
 const navbar = () => {
   return (
       <div className="navbar bg-base-100">
-          <div className="navbar-start">
+          <div className="navbar-start gap-2">
               <div className="dropdown">
                   <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                       <svg
@@ -24,25 +26,31 @@ const navbar = () => {
                   <ul
                       tabIndex={0}
                       className="menu menu-lg dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow font-semibold text-2xl">
-                      <li><a>Posts</a></li>
-                      <li><a>Archive</a></li>
-                      <li><a>About</a></li>
+                      <li><Link href="/posts">Posts</Link></li>
+                      <li><Link href="/archive">Archive</Link></li>
+                      <li><Link href="/about">About</Link></li>
                   </ul>
               </div>
-              <a className="btn btn-ghost font-bold text-2xl">
+              <Link href="/" className="btn btn-ghost font-bold text-2xl">
                   <Image src={Logo} alt="SmajtLogo" className="h-18 w-8"/>
                   <p className="">Blog - </p>
                   <p className="text-primary">Next.js</p>
-              </a>
+              </Link>
+              <div className="rounded-full border border-base-content p-2 lg:hidden">
+                  <Link href="/login"><UserRound className="w-6 h-6"/></Link>
+              </div>
           </div>
           <div className="navbar-center hidden lg:flex">
               <ul className="menu menu-horizontal px-1 font-semibold text-2xl">
-                  <li><a>Posts</a></li>
-                  <li><a>Archive</a></li>
-                  <li><a>About</a></li>
+                  <li><Link href="/posts">Posts</Link></li>
+                  <li><Link href="/archive">Archive</Link></li>
+                  <li><Link href="/about">About</Link></li>
               </ul>
           </div>
-          <div className="navbar-end">
+          <div className="navbar-end hidden lg:inline-flex">
+              <div className="rounded-full border-base-content border p-2">
+                  <Link href="/login"><UserRound className="w-6 h-6"/></Link>
+              </div>
           </div>
       </div>
   )

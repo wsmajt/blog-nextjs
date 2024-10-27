@@ -24,7 +24,7 @@ export default function Home() {
     return (
         <main className="flex flex-col min-w-full min-h-screen items-center pt-10 lg:px-60 gap-10 bg-base-100">
             <div className="text-center py-10 flex flex-row justify-center">
-                <div className="justify-items-start mr-10 content-center">
+                <div className="justify-items-start mr-10 content-center p-2">
                     <h1 className="text-4xl lg:text-7xl font-bold text-primary text-left">
                         Your Blog Page!
                     </h1>
@@ -38,12 +38,12 @@ export default function Home() {
                         Lorem Ipsum.
                     </p>
                 </div>
-                <div className="w-1/2 content-center">
+                <div className="w-1/2 content-center hidden md:block">
                     <Image src={image2} alt="Alt"/>
                 </div>
             </div>
             <div className="bg-base-200 w-full h-40 content-center">
-                <h1 className="text-center font-bold text-8xl text-primary">Latest Posts</h1>
+                <h1 className="text-center font-bold text-7xl lg:text-8xl text-primary">Latest Posts</h1>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full p-5">
                 {blogPosts.map((post, index) => (
