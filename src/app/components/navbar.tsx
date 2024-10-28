@@ -2,10 +2,14 @@
 import Logo from '../assets/smajtLogo.svg';
 import Image from "next/image";
 import Link from "next/link";
-import {UserRound} from "lucide-react";
+import {LogOut, UserRound} from "lucide-react";
 
-const navbar = () => {
-  return (
+import { getCurrentSession } from '@/lib/server/sessions';
+
+const navbar = async () => {
+    const { user } = await getCurrentSession();
+
+    return (
       <div className="navbar bg-base-100">
           <div className="navbar-start gap-2">
               <div className="dropdown">
@@ -37,7 +41,8 @@ const navbar = () => {
                   <p className="text-primary">Next.js</p>
               </Link>
               <div className="rounded-full border border-base-content p-2 lg:hidden">
-                  <Link href="/login"><UserRound className="w-6 h-6"/></Link>
+                  {!user && <Link href="/login"><UserRound className="w-6 h-6"/></Link> }
+                  {user && <Link href="/api/logout"><LogOut className="w-6 h-6"/></Link> }
               </div>
           </div>
           <div className="navbar-center hidden lg:flex">
@@ -49,7 +54,8 @@ const navbar = () => {
           </div>
           <div className="navbar-end hidden lg:inline-flex">
               <div className="rounded-full border-base-content border p-2">
-                  <Link href="/login"><UserRound className="w-6 h-6"/></Link>
+                  {!user && <Link href="/login"><UserRound className="w-6 h-6"/></Link> }
+                  {user && <Link href="/api/logout"><LogOut className="w-6 h-6"/></Link> }
               </div>
           </div>
       </div>

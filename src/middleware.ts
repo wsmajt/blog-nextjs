@@ -1,11 +1,22 @@
 ﻿import { NextResponse } from "next/server";
-
 import type { NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest): Promise<NextResponse> {
+    // Get the session token from cookies
+    const token = request.cookies.get("session")?.value ?? null;
+
+    // Check if the request is for the login or signup page
+    const isLoginPage = request.nextUrl.pathname === "/login";
+    const isSignupPage = request.nextUrl.pathname === "/signup";
+
+    // If there is a token and the user is trying to access login or signup pages, redirect to the homepage
+    if (token !== null && (isLoginPage || isSignupPage)) {
+        return NextResponse.redirect(new URL("/", request.url));
+    }
+
     if (request.method === "GET") {
         const response = NextResponse.next();
-        const token = request.cookies.get("session")?.value ?? null;
+
         if (token !== null) {
             // Only extend cookie expiration on GET requests since we can be sure
             // a new session wasn't set when handling the request.
@@ -21,13 +32,14 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
     }
 
     const originHeader = request.headers.get("Origin");
-    // NOTE: You may need to use `X-Forwarded-Host` instead
     const hostHeader = request.headers.get("Host");
+
     if (originHeader === null || hostHeader === null) {
         return new NextResponse(null, {
             status: 403
         });
     }
+
     let origin: URL;
     try {
         origin = new URL(originHeader);
@@ -36,10 +48,12 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
             status: 403
         });
     }
+
     if (origin.host !== hostHeader) {
         return new NextResponse(null, {
             status: 403
         });
     }
+
     return NextResponse.next();
 }
